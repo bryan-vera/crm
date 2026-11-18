@@ -23,6 +23,7 @@ sed -i '/redis/d' ./Procfile
 sed -i '/watch/d' ./Procfile
 
 bench get-app crm --branch main
+bench get-app "${SSI_REPO_URL:-https://github.com/bryan-vera/synergix_sales_intelligence}" --branch "${SSI_BRANCH:-main}"
 
 bench new-site crm.localhost \
     --force \
@@ -31,6 +32,7 @@ bench new-site crm.localhost \
     --no-mariadb-socket
 
 bench --site crm.localhost install-app crm
+bench --site crm.localhost install-app synergix_sales_intelligence
 bench --site crm.localhost set-config developer_mode 1
 bench --site crm.localhost set-config mute_emails 1
 bench --site crm.localhost set-config server_script_enabled 1
